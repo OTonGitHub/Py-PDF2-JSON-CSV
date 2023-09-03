@@ -1,4 +1,8 @@
 ## Run These Commands First:
+> python -m venv .venv
+
+> .\.venv\Scripts\activate
+
 frozen dependencies from requirements, OR:
 > python -m pip install --upgrade --no-cache-dir -U pip --prefer-binary
 
