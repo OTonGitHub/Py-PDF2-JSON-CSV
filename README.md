@@ -1,5 +1,5 @@
 ## Run These Commands First:
-- frozen dependencies from requirements, OR:
+frozen dependencies from requirements, OR:
 > python -m pip install --upgrade --no-cache-dir -U pip --prefer-binary
 
 > python -m pip install --no-cache-dir -U PyPDF2 --prefer-binary
