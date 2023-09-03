@@ -17,8 +17,6 @@ as file type specific naming is out of scope and rapid dev focus on business log
 - .venv scripts are comitted as well
 - pip package downloads inside script are ignored
 
-
-
-# TODO: TRIGGERS EXCEPTION IF SCHEMA KEY DATA NOT AVAILABLE
-# MAIN IDEA: divide into sections as dictionaries and iterate through data as lists
-# processing of actual col data should be done in different program, this is only for reading raw data.
+TODO: TRIGGERS EXCEPTION IF SCHEMA KEY DATA NOT AVAILABLE
+MAIN IDEA: divide into sections as dictionaries and iterate through data as lists
+processing of actual col data should be done in different program, this is only for reading raw data.
