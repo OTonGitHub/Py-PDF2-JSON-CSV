@@ -55,6 +55,11 @@ class FormItemNotFoundExeception(Exception):
         self.message = message
         super().__init__(self.message)
 
+class InvalidInputError(Exception):
+    def __init__(self, message="Invalid input"):
+        self.message = message
+        super().__init__(self.message)
+
 def input_files() -> Generator[str, None, None]:
     for file in os.listdir(input_dir):
         if file.endswith(".pdf"):
@@ -107,7 +112,7 @@ def case_3(schema_reference, section_data):
     return data
 
 # TODO: MAKE ASYNC
-def conversion(file_path: str):
+def convert_json(file_path: str):
     pdf_content = get_pdf_content(file_path)
     pdf_content_length = len(pdf_content)
     json_output = {}
@@ -130,9 +135,15 @@ def conversion(file_path: str):
     return json_output
 
 # MAIN / TODO: Make Async
-for file in input_files():
-    print(f"""
-          [ Initiated Conversion of {file} ]""")
-    out = conversion((os.path.join(input_dir, file)))
-    with open(os.path.join(output_dir, str(uuid.uuid4())+".json"), "w") as json_file:
-        json.dump(out, json_file)
+output_type = input("Output Type: 1 (JSON) / 2 (CSV): ")
+if re.match(r'^[1|J|j]$', output_type, re.IGNORECASE):
+    for file in input_files():
+        print(f"""
+            [ Initiated Conversion of {file} ]""")
+        out = convert_json((os.path.join(input_dir, file)))
+        with open(os.path.join(output_dir, str(uuid.uuid4())+".json"), "w") as json_file:
+            json.dump(out, json_file)
+elif re.match(r'^[2|C|c]$', output_type, re.IGNORECASE):
+    raise NotImplementedError("CSV Conversion not fully implemented yet")
+else:
+    raise InvalidInputError("Wrong input, Restart Program and Follow Instructions.")
